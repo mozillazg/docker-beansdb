@@ -1,0 +1,16 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=0.7.1.4
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - image="mozillazg/beansdb:$VERSION"
+
+script:
+  - docker build -t "$image" .
+
+after_script:
+  - docker images | grep "$image"
