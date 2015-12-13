@@ -6,16 +6,10 @@ env:
   - VERSION=latest
 
 before_script:
-  - env | sort
-  - cd "$VERSION"
   - image="mozillazg/beansdb:$VERSION"
 
 script:
-  - docker build -t "$image" .
-  - docker run -i -t "$image" &
+  - ./make.sh build $VERSION
 
 after_script:
   - docker images
-  - docker images | grep "$image"
-  - docker ps
-  - docker ps | grep "$image" | grep "7900/tcp"
