@@ -3,6 +3,7 @@ services: docker
 
 env:
   - VERSION=0.7.1.4
+  - VERSION=latest
 
 before_script:
   - env | sort
@@ -11,6 +12,10 @@ before_script:
 
 script:
   - docker build -t "$image" .
+  - docker run -i -t "$images" &
 
 after_script:
+  - docker images
   - docker images | grep "$image"
+  - docker ps
+  - docker ps | grep "$image" | grep "7900/tcp"
