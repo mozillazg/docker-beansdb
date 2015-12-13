@@ -12,7 +12,7 @@ before_script:
 
 script:
   - docker build -t "$image" .
-  - docker run -i -t "$images" &
+  - docker run -i -t "$image" &
 
 after_script:
   - docker images
