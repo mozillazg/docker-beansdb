@@ -5,11 +5,16 @@ env:
   - VERSION=0.7.1.4
   - VERSION=latest
 
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
 before_script:
+  - env | sort
   - image="mozillazg/beansdb:$VERSION"
 
 script:
   - ./make.sh build $VERSION
+  - ~/official-images/test/run.sh "$image"
 
 after_script:
   - docker images

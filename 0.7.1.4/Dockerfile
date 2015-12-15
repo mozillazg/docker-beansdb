@@ -27,13 +27,13 @@ RUN buildDeps='gcc dh-autoreconf' \
     && apt-get purge -y --auto-remove $buildDeps
 
 
-RUN mkdir -p /var/lib/beansdb; \
-    mkdir -p /var/log/beansdb; \
-    mkdir -p /etc/beansdb
+RUN mkdir -p /var/lib/beansdb \
+        /var/log/beansdb \
+        /etc/beansdb
 ADD beansdb_log.conf /etc/beansdb/beansdb_log.conf
 RUN chown -R beansdb /var/lib/beansdb \
-    && chown -R beansdb /etc/beansdb \
-    && chown -R beansdb /var/log/beansdb
+        /etc/beansdb \
+        /var/log/beansdb
 
 VOLUME /var/lib/beansdb
 WORKDIR /var/lib/beansdb
